@@ -1,0 +1,40 @@
+<!-- <textarea rows ='5'  #postInput></textarea>
+<hr>
+<button (click)="onAddPost(postInput)">Save Post</button>
+<p>{{ newPost }}</p> -->
+
+<!-- The below code doesn't have form element -->
+<!-- <mat-card>
+
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="title">
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput rows="5" [(ngModel)]="content"></textarea>
+  </mat-form-field>
+  
+<button mat-raised-button
+color="primary"
+(click)="onAddPost()">Save Post</button>
+</mat-card> -->
+
+<!-- When form element is added, ngModel can be directly used. But name should be given to the html tags -->
+<form (submit)="onAddPost(postForm)" #postForm = "ngForm">
+<mat-card>
+  <mat-form-field>
+    <input matInput type="text" ngModel name="title" required="true" #user_title="ngModel" placeholder="Post Title">
+    <mat-error *ngIf="user_title.invalid">Please type something</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput rows="5" ngModel name="content" required="true"  #user_content="ngModel" placeholder="Post Content"></textarea>
+    <mat-error *ngIf="user_content.invalid">Please type something</mat-error>
+  </mat-form-field>
+
+<button mat-raised-button
+color="primary"
+type = 'submit'>Save Post</button>
+
+</mat-card>
+</form>
